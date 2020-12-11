@@ -17,4 +17,4 @@ wordCounts = words.map(lambda word: (word, 1)).reduceByKey(lambda a,b:a +b)
 print(wordCounts.collect())
 	
 #Export du résultat
-wordCounts.saveAsTextFile("C:/word_count/")
+wordCounts.saveAsTextFile("C:/word_count/output")
