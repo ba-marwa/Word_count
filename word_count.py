@@ -1,18 +1,20 @@
 from pyspark import SparkContext, SparkConf
  
+#Instancier l'API de spark pour les RDD (spark context)
+
 conf =SparkConf().setAppName("wordCount").setMaster("local")
 sc = SparkContext(conf=conf)
 
-	
-Fichier=sc.textFile("C:/Users/sakur/OneDrive/Documents/Cours/Outils Data Mining/Test word count/sample.txt")
+#Importer le fichier
 
-# read data from text file and split each line into words
+Fichier=sc.textFile("C:/word_count/input.txt")
+
+#Réalisation  du word count
+
 words = Fichier.flatMap(lambda line: line.split(" "))
-	
-# count the occurrence of each word
 wordCounts = words.map(lambda word: (word, 1)).reduceByKey(lambda a,b:a +b)
 
 print(wordCounts.collect())
 	
-# save the counts to output
-wordCounts.saveAsTextFile("C:/Users/sakur/OneDrive/Documents/Cours/Outils Data Mining/Test word count/")
+#Export du résultat
+wordCounts.saveAsTextFile("C:/word_count/")
