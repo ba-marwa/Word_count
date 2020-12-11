@@ -12,7 +12,7 @@ words = Fichier.flatMap(lambda line: line.split(" "))
 # count the occurrence of each word
 wordCounts = words.map(lambda word: (word, 1)).reduceByKey(lambda a,b:a +b)
 
-print(count.collect())
+print(wordCounts.collect())
 	
 # save the counts to output
 wordCounts.saveAsTextFile("C:/Users/sakur/OneDrive/Documents/Cours/Outils Data Mining/Test word count/")
